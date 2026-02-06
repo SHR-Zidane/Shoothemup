@@ -104,7 +104,7 @@ namespace MonkeyGame
                     monkey.GroundY = newGround;
                 }
                 //monkey.Update(interval);
-                //monkey.GroundY = newGround;
+                monkey.GroundY = newGround;
                 foreach (Palm_Tree tree in tree)
                 {
                     if (monkey.Hitbox.IntersectsWith(tree.Hitbox))
