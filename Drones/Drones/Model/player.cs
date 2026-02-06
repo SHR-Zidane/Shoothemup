@@ -13,7 +13,7 @@ namespace MonkeyGame
         private int speedy;                                 
 
         private int velocityY = 0;
-        private bool isJumping = false;
+        public bool isJumping = true;
         public int GroundY { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
@@ -59,26 +59,42 @@ namespace MonkeyGame
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
+            if (Hitbox.Right > Beach.WIDTH)
+            {
+                _x = Beach.WIDTH - 50;
+            }
+            else if (Hitbox.Left < 0) 
+            {
+                _x = 2;
+            }
             _x += speedx;
             _y += speedy;
             velocityY += 1;
             _y += velocityY;
-
-            if (_y >= GroundY) 
+            if (_y >= GroundY)
             {
                 _y = GroundY;
                 velocityY = 0;
-                isJumping = false ;
+                isJumping = false;
             }
             Hitbox = new Rectangle(_x, _y, Width, Height);
         }
-        public void CheckOnpalm_tree(Palm_Tree tree, int newground)
+        public bool CheckOnpalm_tree(Palm_Tree tree)
         {
-            if (Y + Height <= tree.Hitbox.Y + 10)
+            if (Y + Height >= tree.Hitbox.Y )
             {
-                newground = tree.Hitbox.Y - Height;
-                onPalmTree = true;
+                return onPalmTree = true;
+            }
+            else
+            {
+                return onPalmTree = false;
             }
         }
+        public int GetHeight(int newground, Palm_Tree tree) 
+        {
+            newground = tree.Hitbox.Y - 50;
+            return newground; 
+        
+        }   
     }
 }

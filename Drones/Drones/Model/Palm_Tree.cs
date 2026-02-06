@@ -32,5 +32,4 @@ namespace MonkeyGame
             Hitbox = new Rectangle(x+50, y+50, width-100, 10);
         }
     }
-
 }

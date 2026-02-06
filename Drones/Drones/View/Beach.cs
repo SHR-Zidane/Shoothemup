@@ -98,24 +98,25 @@ namespace MonkeyGame
         {
             foreach (player monkey in group)
             {
-                monkey.Update(interval);
                 int newGround = 600;
-
+                if (monkey.isJumping)
+                {
+                    monkey.GroundY = newGround;
+                }
+                //monkey.Update(interval);
+                //monkey.GroundY = newGround;
                 foreach (Palm_Tree tree in tree)
                 {
                     if (monkey.Hitbox.IntersectsWith(tree.Hitbox))
                     {
-                        monkey.CheckOnpalm_tree(tree, newGround);
+                        if (monkey.CheckOnpalm_tree(tree))
+                        {
+                            monkey.GroundY = monkey.GetHeight(newGround, tree);
+                            //monkey.Update(interval);
+                        }
                     }
                 }
-                if (!monkey.onPalmTree)
-                {
-                    monkey.GroundY = 600;
-                }
-                else
-                {
-                    monkey.GroundY = newGround;
-                }
+                monkey.Update(interval);
             }
         }
 

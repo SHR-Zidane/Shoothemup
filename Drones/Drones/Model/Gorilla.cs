@@ -8,5 +8,9 @@ namespace MonkeyGame.Model
 {
     public partial class Gorilla
     {
+        public Gorilla() 
+        {
+            
+        }
     }
 }
