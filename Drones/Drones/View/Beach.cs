@@ -12,12 +12,13 @@ namespace MonkeyGame
         private List<player> group;
         private List<Palm_Tree> tree;
         private List<Gorilla> gorillas;
+        private List<Banana> bananas;
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics beach;
    
 
-        public Beach(List<player> group, List<Palm_Tree> tree, List<Gorilla> gorrilas)
+        public Beach(List<player> group, List<Palm_Tree> tree, List<Gorilla> gorrilas, List<Banana> bananas)
         {
             InitializeComponent();
             ClientSize = new Size(WIDTH, HEIGHT);
@@ -28,6 +29,7 @@ namespace MonkeyGame
             this.group = group;
             this.tree = tree;
             this.gorillas = gorrilas;
+            this.bananas = bananas;
             this.KeyPreview = true; // Ensures the form captures key events before child controls
             this.KeyDown += Form1_KeyDown;
             this.KeyUp += Form1_KeyUp;
@@ -86,7 +88,10 @@ namespace MonkeyGame
             {
                 palm_tree.Render(beach);
             }
-            
+            foreach (Banana banana in bananas)
+            {
+                banana.Render(beach);
+            }
             // draw Monkeys
             foreach (player monkey in group)
             {
