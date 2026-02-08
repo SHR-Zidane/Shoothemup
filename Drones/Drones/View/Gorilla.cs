@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MonkeyGame.Helpers;
+using MonkeyGame.Properties;
+using System.Resources;
 
-namespace MonkeyGame.View
+namespace MonkeyGame
 {
     public partial class Gorilla
     {
+        public void Render(BufferedGraphics drawingSpace)
+        {
+            drawingSpace.Graphics.DrawImage(Resources.gorilla, X, Y, Width, Height);
+            drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
+        }
     }
 }

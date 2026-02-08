@@ -13,7 +13,7 @@ namespace MonkeyGame
     public partial class Palm_Tree
     {
         private int x;
-        private int y = 400;
+        private int y = 150;
         private int width = 250;
         private int height = 250;
 
