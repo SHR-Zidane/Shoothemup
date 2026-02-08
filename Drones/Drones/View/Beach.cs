@@ -132,7 +132,13 @@ namespace MonkeyGame
             }
             foreach (Gorilla gorilla in gorillas)
             {
-
+                foreach (Banana bananas in bananas)
+                {
+                    if (gorilla.Hitbox.IntersectsWith(bananas.Hitbox))
+                    {
+                        bananas.IsStolen = gorilla.CheckGetBanana();
+                    }
+                }
             }
         }
 
