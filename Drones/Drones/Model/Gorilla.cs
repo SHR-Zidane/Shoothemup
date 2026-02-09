@@ -32,10 +32,11 @@ namespace MonkeyGame
             // Initialisation immédiate du hitbox pour éviter null et faciliter l'affichage/collisions
             Hitbox = new Rectangle(_x, _y, Width, Height);
         }
-        public void Move(int movex, int movey)
+        public void Move(int movex, int movey, Banana Cible)
         {
             speedx= movex;
             speedy= movey;
+
         }
 
         public void stopmove(bool attacked)
@@ -45,10 +46,17 @@ namespace MonkeyGame
         }
         public void Update(int interval)
         {
+
             _x += speedx;
             _y += speedy;
             Hitbox = new Rectangle(_x, _y, Width, Height);
         }
+       public int GetDistance(int banx, int bany)
+       {
+            int distanceX = Math.Abs(banx - _x);
+            int distanceY = Math.Abs(bany - _y);
+            return (int)Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
+       }
         public bool CheckGetBanana()
         {
             return true;

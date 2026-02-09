@@ -72,11 +72,10 @@ namespace MonkeyGame
                         break;
                 }
             }
-            
+
         }
-        
-            // Affichage de la situation actuelle
-            private void Render()
+        // Affichage de la situation actuelle
+        private void Render()
         {
 
             Image beachImg = Properties.Resources.playa;
@@ -132,11 +131,27 @@ namespace MonkeyGame
             }
             foreach (Gorilla gorilla in gorillas)
             {
-                foreach (Banana bananas in bananas)
+                int min_distance = 1000000;
+                foreach (Banana banana in bananas)
                 {
-                    if (gorilla.Hitbox.IntersectsWith(bananas.Hitbox))
+                    // Défini si gorille capture une banane en touchant sa hitbox
+                    if (gorilla.Hitbox.IntersectsWith(banana.Hitbox))
                     {
-                        bananas.IsStolen = gorilla.CheckGetBanana();
+                        banana.IsStolen = gorilla.CheckGetBanana();
+                    }
+                    // Calcule la distance entre le gorille et les bananes et trouve la banane la plus proche du gorille 
+                    int distance = gorilla.GetDistance(banana.X, banana.Y);
+                    if (min_distance > distance)
+                    {
+                        min_distance = distance;
+                    }
+                }
+                // Vérifie si une banane a été capturée
+                for (int i = 0; i < bananas.Count; i++)
+                {
+                    if (bananas[i].IsStolen)
+                    {
+                        bananas.RemoveAt(i);
                     }
                 }
             }
