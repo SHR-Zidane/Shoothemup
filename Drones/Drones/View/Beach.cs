@@ -132,6 +132,7 @@ namespace MonkeyGame
             foreach (Gorilla gorilla in gorillas)
             {
                 int min_distance = 1000000;
+                Banana cible = null;
                 foreach (Banana banana in bananas)
                 {
                     // Défini si gorille capture une banane en touchant sa hitbox
@@ -144,10 +145,19 @@ namespace MonkeyGame
                     if (min_distance > distance)
                     {
                         min_distance = distance;
+                        cible = banana;
                     }
+
+                    if (cible != null)
+                    {
+                        gorilla.Move(gorilla.Direction, 0, cible);
+                    }
+                    gorilla.Update(interval);
+
                 }
                 // Vérifie si une banane a été capturée
-                for (int i = 0; i < bananas.Count; i++)
+                // On part de la fin vers le début
+                for (int i = bananas.Count - 1; i >= 0; i--)
                 {
                     if (bananas[i].IsStolen)
                     {

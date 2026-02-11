@@ -103,6 +103,16 @@ namespace MonkeyGame.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gorilla_2 {
+            get {
+                object obj = ResourceManager.GetObject("gorilla_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap playa {
             get {
                 object obj = ResourceManager.GetObject("playa", resourceCulture);

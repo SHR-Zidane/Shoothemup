@@ -15,6 +15,7 @@ namespace MonkeyGame
 
         private int speedx;
         private int speedy;
+
         public int GroundY { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
@@ -34,9 +35,24 @@ namespace MonkeyGame
         }
         public void Move(int movex, int movey, Banana Cible)
         {
-            speedx= movex;
-            speedy= movey;
-
+            if (Cible.X > _x)
+            {
+                _x += 1; // Se dirige vers la droite
+                Direction = 0; // 0 pour droite
+            }
+            else if (Cible.X < _x)
+            {
+                _x -= 1; // Se dirige vers la gauche
+                Direction = 1; // 1 pour gauche
+            }
+            if (Cible.Y > _y)
+            {
+                _y += 1; // Se dirige vers le bas
+            }
+            else if(Cible.Y < _y)
+            {
+                _y -= 1; // Se dirige vers le haut
+            }
         }
 
         public void stopmove(bool attacked)
@@ -46,9 +62,6 @@ namespace MonkeyGame
         }
         public void Update(int interval)
         {
-
-            _x += speedx;
-            _y += speedy;
             Hitbox = new Rectangle(_x, _y, Width, Height);
         }
        public int GetDistance(int banx, int bany)
