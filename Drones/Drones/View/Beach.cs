@@ -13,12 +13,13 @@ namespace MonkeyGame
         private List<Palm_Tree> tree;
         private List<Gorilla> gorillas;
         private List<Banana> bananas;
+        private List<Coconut> coconuts;
 
         BufferedGraphicsContext currentContext;
         BufferedGraphics beach;
    
 
-        public Beach(List<player> group, List<Palm_Tree> tree, List<Gorilla> gorrilas, List<Banana> bananas)
+        public Beach(List<player> group, List<Palm_Tree> tree, List<Gorilla> gorrilas, List<Banana> bananas, List<Coconut> coconuts)
         {
             InitializeComponent();
             ClientSize = new Size(WIDTH, HEIGHT);
@@ -30,6 +31,7 @@ namespace MonkeyGame
             this.tree = tree;
             this.gorillas = gorrilas;
             this.bananas = bananas;
+            this.coconuts = coconuts;
             this.KeyPreview = true; // Ensures the form captures key events before child controls
             this.KeyDown += Form1_KeyDown;
             this.KeyUp += Form1_KeyUp;
@@ -101,6 +103,10 @@ namespace MonkeyGame
             {
                 gorilla.Render(beach);
             }
+            foreach (Coconut coconut in coconuts)
+            {
+                coconut.Render(beach);
+            }
             beach.Render();
         }
 
@@ -150,10 +156,16 @@ namespace MonkeyGame
 
                     if (cible != null)
                     {
-                        gorilla.Move(gorilla.Direction, 0, cible);
+                        gorilla.Move(cible);
                     }
                     gorilla.Update(interval);
 
+                    Coconut coco = gorilla.ThrowCoconut();
+
+                    if (coco != null)
+                    {
+                        coconuts.Add(coco);
+                    }
                 }
                 // Vérifie si une banane a été capturée
                 // On part de la fin vers le début

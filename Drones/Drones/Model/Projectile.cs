@@ -1,10 +1,14 @@
-﻿using System;
+﻿using MonkeyGame.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Resources;
+using System.Drawing.Text;
+using System.Security.Cryptography.X509Certificates;
 
-namespace MonkeyGame.Model
+namespace MonkeyGame
 {
     public partial class Projectile
     {

@@ -1,4 +1,5 @@
-﻿using MonkeyGame.Properties;
+﻿using MonkeyGame.Model;
+using MonkeyGame.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Text;
@@ -13,8 +14,11 @@ namespace MonkeyGame
         private int _x;  // Position en X
         private int _y;  // Position en Y
 
-        private int speedx;
-        private int speedy;
+        private int speedx = 1;
+        private int speedy = 1;
+
+        private int _shootTimer = 0;
+        private int _shootInterval = GlobalHelpers.alea.Next(2000, 5000);
 
         public int GroundY { get; set; }
         public int Width { get; set; }
@@ -33,25 +37,25 @@ namespace MonkeyGame
             // Initialisation immédiate du hitbox pour éviter null et faciliter l'affichage/collisions
             Hitbox = new Rectangle(_x, _y, Width, Height);
         }
-        public void Move(int movex, int movey, Banana Cible)
+        public void Move(Banana Cible)
         {
             if (Cible.X > _x)
             {
-                _x += 1; // Se dirige vers la droite
+                _x += speedx; // Se dirige vers la droite
                 Direction = 0; // 0 pour droite
             }
             else if (Cible.X < _x)
             {
-                _x -= 1; // Se dirige vers la gauche
+                _x -= speedx; // Se dirige vers la gauche
                 Direction = 1; // 1 pour gauche
             }
             if (Cible.Y > _y)
             {
-                _y += 1; // Se dirige vers le bas
+                _y += speedy; // Se dirige vers le bas
             }
             else if(Cible.Y < _y)
             {
-                _y -= 1; // Se dirige vers le haut
+                _y -= speedy; // Se dirige vers le haut
             }
         }
 
@@ -63,6 +67,12 @@ namespace MonkeyGame
         public void Update(int interval)
         {
             Hitbox = new Rectangle(_x, _y, Width, Height);
+
+            if (_shootTimer > 0) 
+            {
+                _shootTimer -= interval;
+            }
+
         }
        public int GetDistance(int banx, int bany)
        {
@@ -74,6 +84,14 @@ namespace MonkeyGame
         {
             return true;
         }
-
+        public Coconut ThrowCoconut()
+        {
+            if (_shootTimer <= 0)
+            {
+                _shootTimer = _shootInterval;
+                return new Coconut(this.X + (this.Width / 2), this.Y);
+            }
+            return null;
+        }
     }
 }

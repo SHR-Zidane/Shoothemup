@@ -19,6 +19,7 @@ namespace MonkeyGame
             List<Palm_Tree> tree= new List<Palm_Tree>();
             List<Gorilla> gorillas = new List<Gorilla>();
             List<Banana> bananas = new List<Banana>();
+            List<Coconut> coconuts = new List<Coconut>();
 
             group.Add(new player(Beach.WIDTH / 2, 0, 50, 50));
             int space = 100;
@@ -45,7 +46,7 @@ namespace MonkeyGame
             }
 
             // Démarrage
-            Application.Run(new Beach(group, tree, gorillas, bananas));
+            Application.Run(new Beach(group, tree, gorillas, bananas, coconuts));
         }
     }
 }
