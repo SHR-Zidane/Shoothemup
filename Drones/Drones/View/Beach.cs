@@ -118,7 +118,7 @@ namespace MonkeyGame
                 monkey.GroundY = newGround;
                 foreach (Palm_Tree tree in tree)
                 {
-                    if (monkey.Hitbox.IntersectsWith(tree.Hitbox))
+                    if (monkey.Hitbox.IntersectsWith(tree.LeafHitbox))
                     {
                         if (monkey.CheckOnpalm_tree(tree))
                         {
@@ -131,7 +131,7 @@ namespace MonkeyGame
             }
             foreach (Gorilla gorilla in gorillas)
             {
-                int min_distance = 1000000;
+                int min_distance = 10000;
                 Banana cible = null;
                 foreach (Banana banana in bananas)
                 {

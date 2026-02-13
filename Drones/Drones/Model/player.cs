@@ -81,7 +81,7 @@ namespace MonkeyGame
         }
         public bool CheckOnpalm_tree(Palm_Tree tree)
         {
-            if (Y + Height >= tree.Hitbox.Y )
+            if (Y + Height >= tree.LeafHitbox.Y )
             {
                 return onPalmTree = true;
             }
@@ -92,7 +92,7 @@ namespace MonkeyGame
         }
         public int GetHeight(int newground, Palm_Tree tree) 
         {
-            newground = tree.Hitbox.Y - 50;
+            newground = tree.LeafHitbox.Y - 50;
             return newground; 
         
         }   

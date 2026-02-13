@@ -21,7 +21,8 @@ namespace MonkeyGame
         public int Y { get { return y; } }
         public int WIDTH { get { return width; } }
         public int Height { get { return height; } }
-        public Rectangle Hitbox { get; set; }
+        public Rectangle LeafHitbox { get; set; }
+        public Rectangle TreeHitbox { get; set; }
         public int Direction;
         
 
@@ -29,7 +30,7 @@ namespace MonkeyGame
         {
             this.x = x;
             Direction = direction;
-            Hitbox = new Rectangle(x+50, y+50, width-100, 10);
+            LeafHitbox = new Rectangle(x+50, y+50, width-100, 10);
         }
     }
 }

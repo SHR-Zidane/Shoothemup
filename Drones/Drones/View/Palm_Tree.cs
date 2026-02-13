@@ -18,12 +18,12 @@ namespace MonkeyGame
             if (Direction == 0)
             {
                 drawingSpace.Graphics.DrawImage(Resources.tree, X, Y, WIDTH, Height);
-                drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
+                drawingSpace.Graphics.DrawRectangle(Pens.Red, LeafHitbox);
             }
             else
             {
                 drawingSpace.Graphics.DrawImage(Resources.Tree_2, X, Y, WIDTH, Height);
-                drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
+                drawingSpace.Graphics.DrawRectangle(Pens.Red, LeafHitbox);
             }
         }
     }
