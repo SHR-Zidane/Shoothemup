@@ -158,13 +158,32 @@ namespace MonkeyGame
                     {
                         gorilla.Move(cible);
                     }
-                    gorilla.Update(interval);
+                    
+                }
+                Coconut coco = gorilla.HaveCoconut();
 
-                    Coconut coco = gorilla.ThrowCoconut();
+                gorilla.Update(interval);
 
-                    if (coco != null)
+                if (coconuts.Count < gorillas.Count)
+                {
+                    coconuts.Add(coco);
+                }
+
+                if (!gorilla.ReadyToAttack()) 
+                {
+                    coco.move(gorilla.X, gorilla.Y);
+                }
+                else
+                {
+                    coco.attack();
+                }
+                // Vérifie si une noix de coco sort de l'écran
+                // Si oui elle est supprimée
+                for (int i = coconuts.Count - 1; i >= 0; i--)
+                {
+                    if(coconuts[i].Y > WIDTH)
                     {
-                        coconuts.Add(coco);
+                        coconuts.RemoveAt(i);
                     }
                 }
                 // Vérifie si une banane a été capturée
@@ -177,6 +196,8 @@ namespace MonkeyGame
                     }
                 }
             }
+
+            
         }
 
         // Méthode appelée à chaque frame

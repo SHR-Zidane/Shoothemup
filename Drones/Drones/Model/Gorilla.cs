@@ -18,7 +18,7 @@ namespace MonkeyGame
         private int speedy = 1;
 
         private int _shootTimer = 0;
-        private int _shootInterval = GlobalHelpers.alea.Next(2000, 5000);
+        private int _shootInterval = GlobalHelpers.alea.Next(48, 64);
 
         public int GroundY { get; set; }
         public int Width { get; set; }
@@ -84,14 +84,19 @@ namespace MonkeyGame
         {
             return true;
         }
-        public Coconut ThrowCoconut()
+        public Coconut HaveCoconut()
+        {
+            _shootTimer = _shootInterval;
+            return new Coconut(this.X + (this.Width / 2), this.Y);
+        }
+        public bool ReadyToAttack()
         {
             if (_shootTimer <= 0)
             {
-                _shootTimer = _shootInterval;
-                return new Coconut(this.X + (this.Width / 2), this.Y);
+                return true;
             }
-            return null;
+            else 
+                return false;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace MonkeyGame
         public int X { get { return _x; } }
         public int Y { get { return _y; } }
         public Rectangle Hitbox { get; set; }
+        public bool getTaken = true;
 
         public int dmg { get; set; }
 
@@ -29,10 +30,31 @@ namespace MonkeyGame
             dmg = damage;
             Hitbox = new Rectangle(_x, _y, width, height);
         }
-        public void move()
+        public void move(int gorillaX, int gorillaY)
+        {
+            if (gorillaX > _x)
+            {
+                _x += _speed;
+            }
+            else if (gorillaX < _x)
+            {
+                _x -= _speed;
+            }
+            if (gorillaY > _y)
+            {
+                _y += _speed;
+            }
+            else if (gorillaY < _y)
+            {
+                _y -= _speed;
+            }
+            getTaken = true;
+            Hitbox = new Rectangle(_x, _y, Hitbox.Width, Hitbox.Height);
+        }
+        public void attack()
         {
             _y += _speed;
-            Hitbox = new Rectangle(_x, _y, Hitbox.Width, Hitbox.Height);
+            getTaken = false;
         }
     }
 }
