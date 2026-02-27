@@ -1,4 +1,4 @@
-﻿using MonkeyGame.Model;
+﻿using MonkeyGame;
 using MonkeyGame.Properties;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MonkeyGame
+
 {
     public partial class Gorilla
     {

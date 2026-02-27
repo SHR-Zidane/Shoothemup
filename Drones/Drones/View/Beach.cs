@@ -1,4 +1,4 @@
-using MonkeyGame.Model;
+using MonkeyGame;
 namespace MonkeyGame
 {
     
@@ -14,12 +14,12 @@ namespace MonkeyGame
         private List<Gorilla> gorillas;
         private List<Banana> bananas;
         private List<Coconut> coconuts;
-
+        private List<Bomb> bombs;
         BufferedGraphicsContext currentContext;
         BufferedGraphics beach;
    
 
-        public Beach(List<player> group, List<Palm_Tree> tree, List<Gorilla> gorrilas, List<Banana> bananas, List<Coconut> coconuts)
+        public Beach(List<player> group, List<Palm_Tree> tree, List<Gorilla> gorrilas, List<Banana> bananas, List<Coconut> coconuts, List<Bomb> bombs)
         {
             InitializeComponent();
             ClientSize = new Size(WIDTH, HEIGHT);
@@ -32,6 +32,7 @@ namespace MonkeyGame
             this.gorillas = gorrilas;
             this.bananas = bananas;
             this.coconuts = coconuts;
+            this.bombs = bombs;
             this.KeyPreview = true; // Ensures the form captures key events before child controls
             this.KeyDown += Form1_KeyDown;
             this.KeyUp += Form1_KeyUp;
@@ -56,6 +57,13 @@ namespace MonkeyGame
                         break;
                     case Keys.Space:
                         monkey.Jump();
+                        break;
+                    case Keys.Enter:
+                        Bomb newBomb = monkey.ThrowBomb();
+                        if (newBomb != null)
+                        {
+                            bombs.Add(newBomb);
+                        }
                         break;
                 }
             }
@@ -106,6 +114,10 @@ namespace MonkeyGame
             foreach (Coconut coconut in coconuts)
             {
                 coconut.Render(beach);
+            }
+            foreach (Bomb bomb in bombs)
+            {
+                bomb.Render(beach);
             }
             beach.Render();
         }
@@ -174,7 +186,10 @@ namespace MonkeyGame
             {
                 coco.attack();
             }
-
+            foreach (Bomb bomb in bombs)
+            {
+                bomb.attack();
+            }
             for (int i = coconuts.Count - 1; i >= 0; i--)
             {
                 if (coconuts[i].Y > HEIGHT || coconuts[i].Y < 0)
@@ -182,7 +197,13 @@ namespace MonkeyGame
                     coconuts.RemoveAt(i);
                 }
             }
-
+            for (int i = bombs.Count - 1; i >= 0; i--)
+            {
+                if (bombs[i].Y > HEIGHT)
+                {
+                    bombs.RemoveAt(i);
+                }
+            }
             for (int i = bananas.Count - 1; i >= 0; i--)
             {
                 if (bananas[i].IsStolen)

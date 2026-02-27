@@ -1,5 +1,7 @@
 ﻿using MonkeyGame.Helpers;
+using MonkeyGame;
 using MonkeyGame.Properties;
+using System.Drawing;
 using System.Resources;
 
 namespace MonkeyGame

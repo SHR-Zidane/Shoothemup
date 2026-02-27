@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MonkeyGame.Model
+namespace MonkeyGame
 {
     public partial class Bomb:Projectile
     {

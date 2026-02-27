@@ -1,4 +1,4 @@
-﻿using MonkeyGame.Model;
+﻿using MonkeyGame;
 using System.Threading;
 using System.Resources;
 using MonkeyGame.Properties;
@@ -9,8 +9,10 @@ namespace MonkeyGame
         private int _x;  // Position en X
         private int _y;  // Position en Y
 
-        private int speedx;                                 
-        private int speedy;                                 
+        private int speedx;
+        private int speedy;
+        private int _bombCooldown = 0;
+        private int _bombInterval = 500; // Temps en millisecondes entre chaque lancement de bombe
 
         private int velocityY = 0;
         public bool isJumping = true;
@@ -20,7 +22,7 @@ namespace MonkeyGame
         public bool onPalmTree = false;
         public int X { get { return _x; } }
         public int Y { get { return _y; } }
-        public Rectangle Hitbox { get;set; }
+        public Rectangle Hitbox { get; set; }
 
 
         public player(int X, int Y, int width, int height)
@@ -37,7 +39,7 @@ namespace MonkeyGame
         {
             speedx = movex;
             speedy = movey;
-            
+
 
         }
         public void Jump()
@@ -48,7 +50,7 @@ namespace MonkeyGame
                 isJumping = true;
             }
         }
-        public void stopmove() 
+        public void stopmove()
         {
             speedx = 0;
             speedy = 0;
@@ -63,7 +65,7 @@ namespace MonkeyGame
             {
                 _x = Beach.WIDTH - 50;
             }
-            else if (Hitbox.Left < 0) 
+            else if (Hitbox.Left < 0)
             {
                 _x = 2;
             }
@@ -77,11 +79,17 @@ namespace MonkeyGame
                 velocityY = 0;
                 isJumping = false;
             }
+
+            if (_bombCooldown > 0)
+            {
+                _bombCooldown -= interval;
+            }
+
             Hitbox = new Rectangle(_x, _y, Width, Height);
         }
         public bool CheckOnpalm_tree(Palm_Tree tree)
         {
-            if (Y + Height >= tree.LeafHitbox.Y )
+            if (Y + Height >= tree.LeafHitbox.Y)
             {
                 return onPalmTree = true;
             }
@@ -90,11 +98,20 @@ namespace MonkeyGame
                 return onPalmTree = false;
             }
         }
-        public int GetHeight(int newground, Palm_Tree tree) 
+        public int GetHeight(int newground, Palm_Tree tree)
         {
             newground = tree.LeafHitbox.Y - 50;
-            return newground; 
-        
-        }   
+            return newground;
+
+        }
+        public Bomb ThrowBomb()
+        {
+            if (_bombCooldown <= 0)
+            {
+                _bombCooldown = _bombInterval; // Réinitialise le cooldown
+                return new Bomb(this._x + (this.Width / 2), this._y + this.Height);
+            }
+            return null;
+        }
     }
 }
