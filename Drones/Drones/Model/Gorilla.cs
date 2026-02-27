@@ -18,7 +18,7 @@ namespace MonkeyGame
         private int speedy = 1;
 
         private int _shootTimer = 0;
-        private int _shootInterval = GlobalHelpers.alea.Next(48, 64);
+        private int _shootInterval = GlobalHelpers.alea.Next(1500, 3000);
 
         public int GroundY { get; set; }
         public int Width { get; set; }
@@ -66,13 +66,12 @@ namespace MonkeyGame
         }
         public void Update(int interval)
         {
-            Hitbox = new Rectangle(_x, _y, Width, Height);
-
             if (_shootTimer > 0) 
             {
                 _shootTimer -= interval;
             }
 
+            Hitbox = new Rectangle(_x, _y, Width, Height);   // Mise à jour du hitbox après le déplacement
         }
        public int GetDistance(int banx, int bany)
        {
@@ -93,6 +92,8 @@ namespace MonkeyGame
         {
             if (_shootTimer <= 0)
             {
+                _shootInterval = GlobalHelpers.alea.Next(1500, 3000);
+                _shootTimer = _shootInterval;
                 return true;
             }
             else 

@@ -84,7 +84,7 @@ namespace MonkeyGame
 
             beach.Graphics.DrawImage(beachImg, 0, 0, WIDTH, HEIGHT);
 
-            // draw Trees
+
             foreach (Palm_Tree palm_tree in tree)
             {
                 palm_tree.Render(beach);
@@ -93,7 +93,7 @@ namespace MonkeyGame
             {
                 banana.Render(beach);
             }
-            // draw Monkeys
+
             foreach (player monkey in group)
             {
                 monkey.Render(beach);
@@ -116,88 +116,80 @@ namespace MonkeyGame
             foreach (player monkey in group)
             {
                 int newGround = 400;
-                if (monkey.isJumping)
-                {
-                    monkey.GroundY = newGround;
-                }
-                //monkey.Update(interval);
                 monkey.GroundY = newGround;
-                foreach (Palm_Tree tree in tree)
+                foreach (Palm_Tree pTree in tree)
                 {
-                    if (monkey.Hitbox.IntersectsWith(tree.LeafHitbox))
+                    if (monkey.Hitbox.IntersectsWith(pTree.LeafHitbox))
                     {
-                        if (monkey.CheckOnpalm_tree(tree))
+                        if (monkey.CheckOnpalm_tree(pTree))
                         {
-                            monkey.GroundY = monkey.GetHeight(newGround, tree);
-                            //monkey.Update(interval);
+                            monkey.GroundY = monkey.GetHeight(newGround, pTree);
                         }
                     }
                 }
                 monkey.Update(interval);
             }
+
+
             foreach (Gorilla gorilla in gorillas)
             {
+                // On cherche d'abord la cible
                 int min_distance = 10000;
                 Banana cible = null;
                 foreach (Banana banana in bananas)
                 {
-                    // Défini si gorille capture une banane en touchant sa hitbox
                     if (gorilla.Hitbox.IntersectsWith(banana.Hitbox))
-                    {
                         banana.IsStolen = gorilla.CheckGetBanana();
-                    }
-                    // Calcule la distance entre le gorille et les bananes et trouve la banane la plus proche du gorille 
+
                     int distance = gorilla.GetDistance(banana.X, banana.Y);
                     if (min_distance > distance)
                     {
                         min_distance = distance;
                         cible = banana;
                     }
+                }
 
-                    if (cible != null)
+                // LE GORILLE BOUGUE UNE SEULE FOIS VERS LA CIBLE
+                if (cible != null)
+                {
+                    gorilla.Move(cible);
+                }
+
+                gorilla.Update(interval); // Met à jour sa position et son timer de tir
+
+                // On vérifie si le gorille est prêt à attaquer
+                if (gorilla.ReadyToAttack())
+                {
+
+                    Coconut newCoco = gorilla.HaveCoconut();
+                    if (newCoco != null)
                     {
-                        gorilla.Move(cible);
-                    }
-                    
-                }
-                Coconut coco = gorilla.HaveCoconut();
-
-                gorilla.Update(interval);
-
-                if (coconuts.Count < gorillas.Count)
-                {
-                    coconuts.Add(coco);
-                }
-
-                if (!gorilla.ReadyToAttack()) 
-                {
-                    coco.move(gorilla.X, gorilla.Y);
-                }
-                else
-                {
-                    coco.attack();
-                }
-                // Vérifie si une noix de coco sort de l'écran
-                // Si oui elle est supprimée
-                for (int i = coconuts.Count - 1; i >= 0; i--)
-                {
-                    if(coconuts[i].Y > WIDTH)
-                    {
-                        coconuts.RemoveAt(i);
-                    }
-                }
-                // Vérifie si une banane a été capturée
-                // On part de la fin vers le début
-                for (int i = bananas.Count - 1; i >= 0; i--)
-                {
-                    if (bananas[i].IsStolen)
-                    {
-                        bananas.RemoveAt(i);
+                        coconuts.Add(newCoco);
                     }
                 }
             }
 
-            
+
+            foreach (Coconut coco in coconuts)
+            {
+                coco.attack();
+            }
+
+            for (int i = coconuts.Count - 1; i >= 0; i--)
+            {
+                if (coconuts[i].Y > HEIGHT || coconuts[i].Y < 0)
+                {
+                    coconuts.RemoveAt(i);
+                }
+            }
+
+            for (int i = bananas.Count - 1; i >= 0; i--)
+            {
+                if (bananas[i].IsStolen)
+                {
+                    bananas.RemoveAt(i);
+                }
+            }
         }
 
         // Méthode appelée à chaque frame

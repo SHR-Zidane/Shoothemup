@@ -55,6 +55,7 @@ namespace MonkeyGame
         {
             _y += _speed;
             getTaken = false;
+            Hitbox = new Rectangle(_x, _y, Hitbox.Width, Hitbox.Height);
         }
     }
 }
