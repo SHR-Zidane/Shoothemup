@@ -8,6 +8,6 @@ namespace MonkeyGame
 {
     public partial class Bomb:Projectile
     {
-        public Bomb(int x, int y) : base(x, y, 5, 10, 10, 10) { }
+        public Bomb(int x, int y) : base(x, y, 10, 10, 20, 20) { }
     }
 }

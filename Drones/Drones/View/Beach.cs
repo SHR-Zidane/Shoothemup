@@ -139,6 +139,13 @@ namespace MonkeyGame
                         }
                     }
                 }
+                foreach (Coconut coco in coconuts)
+                {
+                    if (monkey.Hitbox.IntersectsWith(coco.Hitbox))
+                    {
+                        monkey.stopmove();
+                    }
+                }
                 monkey.Update(interval);
             }
 
@@ -169,10 +176,17 @@ namespace MonkeyGame
 
                 gorilla.Update(interval); // Met à jour sa position et son timer de tir
 
+                foreach (Bomb bomb in bombs)
+                {
+                    if (gorilla.Hitbox.IntersectsWith(bomb.Hitbox))
+                    {
+                        gorilla.stopmove(true);
+                    }
+                }
                 // On vérifie si le gorille est prêt à attaquer
                 if (gorilla.ReadyToAttack())
                 {
-
+        
                     Coconut newCoco = gorilla.HaveCoconut();
                     if (newCoco != null)
                     {
@@ -181,15 +195,15 @@ namespace MonkeyGame
                 }
             }
 
-
-            foreach (Coconut coco in coconuts)
-            {
-                coco.attack();
-            }
             foreach (Bomb bomb in bombs)
             {
                 bomb.attack();
             }
+            foreach (Coconut coco in coconuts)
+            {
+                coco.attack();
+            }
+
             for (int i = coconuts.Count - 1; i >= 0; i--)
             {
                 if (coconuts[i].Y > HEIGHT || coconuts[i].Y < 0)

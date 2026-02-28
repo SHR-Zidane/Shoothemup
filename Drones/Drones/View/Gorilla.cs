@@ -4,7 +4,7 @@ using MonkeyGame.Properties;
 using System.Drawing;
 using System.Resources;
 
-namespace MonkeyGame
+namespace MonkeyGame                                                                                 
 {
     public partial class Gorilla
     {

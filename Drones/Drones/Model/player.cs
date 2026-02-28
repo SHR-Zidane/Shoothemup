@@ -12,7 +12,7 @@ namespace MonkeyGame
         private int speedx;
         private int speedy;
         private int _bombCooldown = 0;
-        private int _bombInterval = 500; // Temps en millisecondes entre chaque lancement de bombe
+        private int _bombInterval = 250; // Temps en millisecondes entre chaque lancement de bombe
 
         private int velocityY = 0;
         public bool isJumping = true;
@@ -109,6 +109,7 @@ namespace MonkeyGame
             if (_bombCooldown <= 0)
             {
                 _bombCooldown = _bombInterval; // Réinitialise le cooldown
+
                 return new Bomb(this._x + (this.Width / 2), this._y + this.Height);
             }
             return null;
