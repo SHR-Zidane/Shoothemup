@@ -119,5 +119,10 @@ namespace MonkeyGame
             }
             return null;
         }
+        public void TakeDamage(int damage)
+        {
+            CurrentHp -= damage;
+            if (CurrentHp < 0) CurrentHp = 0;
+        }
     }
 }

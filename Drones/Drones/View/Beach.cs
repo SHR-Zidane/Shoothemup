@@ -139,94 +139,93 @@ namespace MonkeyGame
                         }
                     }
                 }
-                foreach (Coconut coco in coconuts)
+               /* for (int i = coconuts.Count - 1; i >= 0; i--)
                 {
-                    if (monkey.Hitbox.IntersectsWith(coco.Hitbox))
+                    if (monkey.Hitbox.IntersectsWith(coconuts[i].Hitbox))
                     {
-                        monkey.stopmove();
+                        monkey.TakeDamage(1);
+                        coconuts.RemoveAt(i);
                     }
-                }
+                    for (int t = tree.Count - 1; t >= 0; t--)
+                    {
+                         if (coconuts[i].Hitbox.IntersectsWith(tree[t].))
+                    }
+                }*/
                 monkey.Update(interval);
-            }
 
-
-            foreach (Gorilla gorilla in gorillas)
-            {
-                // On cherche d'abord la cible
-                int min_distance = 10000;
-                Banana cible = null;
-                foreach (Banana banana in bananas)
+                for (int i = gorillas.Count - 1; i >= 0; i--)
                 {
-                    if (gorilla.Hitbox.IntersectsWith(banana.Hitbox))
-                        banana.IsStolen = gorilla.CheckGetBanana();
-
-                    int distance = gorilla.GetDistance(banana.X, banana.Y);
-                    if (min_distance > distance)
+                    Gorilla gorilla = gorillas[i];
+                    // On cherche d'abord la cible
+                    int min_distance = 10000;
+                    Banana cible = null;
+                    foreach (Banana banana in bananas)
                     {
-                        min_distance = distance;
-                        cible = banana;
+                        if (gorilla.Hitbox.IntersectsWith(banana.Hitbox))
+                            banana.IsStolen = gorilla.CheckGetBanana();
+
+                        int distance = gorilla.GetDistance(banana.X, banana.Y);
+                        if (min_distance > distance)
+                        {
+                            min_distance = distance;
+                            cible = banana;
+                        }
+                    }
+
+                    // LE GORILLE BOUGUE UNE SEULE FOIS VERS LA CIBLE
+                    if (cible != null)
+                    {
+                        gorilla.Move(cible);
+                    }
+
+                    gorilla.Update(interval); // Met à jour sa position et son timer de tir
+
+                    // On vérifie si le gorille est prêt à attaquer
+                    if (gorilla.ReadyToAttack())
+                    {
+
+                        Coconut newCoco = gorilla.HaveCoconut();
+                        if (newCoco != null)
+                        {
+                            coconuts.Add(newCoco);
+                        }
+                    }
+                    for (int j = bombs.Count - 1; j >= 0; j--)
+                    {
+                        if (bombs[j].Hitbox.IntersectsWith(gorilla.Hitbox))
+                        {
+                            gorilla.CurrentHp -= 1;
+                            bombs.RemoveAt(j);
+                            if (gorilla.CurrentHp <= 0)
+                            {
+                                gorillas.RemoveAt(i);
+                            }
+                        }
                     }
                 }
-
-                // LE GORILLE BOUGUE UNE SEULE FOIS VERS LA CIBLE
-                if (cible != null)
-                {
-                    gorilla.Move(cible);
-                }
-
-                gorilla.Update(interval); // Met à jour sa position et son timer de tir
 
                 foreach (Bomb bomb in bombs)
                 {
-                    if (gorilla.Hitbox.IntersectsWith(bomb.Hitbox))
-                    {
-                        gorilla.stopmove(true);
-                    }
+                    bomb.attack();
                 }
-                // On vérifie si le gorille est prêt à attaquer
-                if (gorilla.ReadyToAttack())
+                foreach (Coconut coco in coconuts)
                 {
-        
-                    Coconut newCoco = gorilla.HaveCoconut();
-                    if (newCoco != null)
-                    {
-                        coconuts.Add(newCoco);
-                    }
+                    coco.attack();
                 }
-            }
 
-            foreach (Bomb bomb in bombs)
-            {
-                bomb.attack();
-            }
-            foreach (Coconut coco in coconuts)
-            {
-                coco.attack();
-            }
+                foreach (Bomb bomb in bombs) bomb.attack();
 
-            for (int i = coconuts.Count - 1; i >= 0; i--)
-            {
-                if (coconuts[i].Y > HEIGHT || coconuts[i].Y < 0)
+                foreach (Coconut coco in coconuts) coco.attack();
+
+                for (int i = bananas.Count - 1; i >= 0; i--)
                 {
-                    coconuts.RemoveAt(i);
-                }
-            }
-            for (int i = bombs.Count - 1; i >= 0; i--)
-            {
-                if (bombs[i].Y > HEIGHT)
-                {
-                    bombs.RemoveAt(i);
-                }
-            }
-            for (int i = bananas.Count - 1; i >= 0; i--)
-            {
-                if (bananas[i].IsStolen)
-                {
-                    bananas.RemoveAt(i);
+                    if (bananas[i].IsStolen)
+                    {
+                        bananas.RemoveAt(i);
+                    }
                 }
             }
         }
-
         // Méthode appelée à chaque frame
         private void NewFrame(object sender, EventArgs e)
         {

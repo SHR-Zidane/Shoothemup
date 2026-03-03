@@ -22,6 +22,7 @@ namespace MonkeyGame
             List<Coconut> coconuts = new List<Coconut>();
             List<Bomb> bombs = new List<Bomb>();
 
+
             group.Add(new player(Beach.WIDTH / 2, 0, 50, 50));
             int space = 100;
             int MaxBanana = 2;
