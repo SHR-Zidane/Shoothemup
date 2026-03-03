@@ -15,6 +15,11 @@ namespace MonkeyGame
         private int _bombInterval = 250; // Temps en millisecondes entre chaque lancement de bombe
 
         private int velocityY = 0;
+        private int _hpMax = 5;
+        private int _currentHp = 5;
+
+        public int HpMax { get { return _hpMax; } }
+        public int CurrentHp { get { return _currentHp; } set { _currentHp = value; } }
         public bool isJumping = true;
         public int GroundY { get; set; }
         public int Width { get; set; }

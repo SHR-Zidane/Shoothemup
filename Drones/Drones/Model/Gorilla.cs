@@ -21,6 +21,11 @@ namespace MonkeyGame
         private int _shootTimer = 0;
         private int _shootInterval = GlobalHelpers.alea.Next(1500, 3000);
 
+        private int _hpMax = 3;
+        private int _currentHp = 3;
+
+        public int HpMax {  get { return _hpMax; } }
+        public int CurrentHp { get { return _currentHp; } set { _currentHp = value; } }
         public int GroundY { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
