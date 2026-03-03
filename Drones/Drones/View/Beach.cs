@@ -139,18 +139,31 @@ namespace MonkeyGame
                         }
                     }
                 }
-               /* for (int i = coconuts.Count - 1; i >= 0; i--)
+               for (int i = coconuts.Count - 1; i >= 0; i--)
                 {
                     if (monkey.Hitbox.IntersectsWith(coconuts[i].Hitbox))
                     {
                         monkey.TakeDamage(1);
                         coconuts.RemoveAt(i);
+
+                        continue;
                     }
                     for (int t = tree.Count - 1; t >= 0; t--)
                     {
-                         if (coconuts[i].Hitbox.IntersectsWith(tree[t].))
+                        if (coconuts[i].Hitbox.IntersectsWith(tree[t].TreeHitbox))
+                        {
+                            coconuts.RemoveAt(i);
+                            tree[t].CurrentDurability -= 1;
+
+                            if (tree[t].CurrentDurability < 0)
+                            {
+                                tree.RemoveAt(t);
+                            }
+
+                            break;
+                        }
                     }
-                }*/
+                }
                 monkey.Update(interval);
 
                 for (int i = gorillas.Count - 1; i >= 0; i--)
