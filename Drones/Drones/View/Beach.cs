@@ -17,7 +17,8 @@ namespace MonkeyGame
         private List<Bomb> bombs;
         BufferedGraphicsContext currentContext;
         BufferedGraphics beach;
-   
+        private bool _gameOver = false;
+        private bool _victory = false;
 
         public Beach(List<player> group, List<Palm_Tree> tree, List<Gorilla> gorrilas, List<Banana> bananas, List<Coconut> coconuts, List<Bomb> bombs)
         {
@@ -125,8 +126,29 @@ namespace MonkeyGame
         // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
         private void Update(int interval)
         {
+            if (_gameOver || _victory) return;
+
+            if (bananas.Count == 0)
+            {
+                _gameOver = true;
+                MessageBox.Show("Défaite ! Les méchants gorilles ont volés toutes les bananes !");
+                return;
+            }
+
             foreach (player monkey in group)
             {
+                if (monkey.CurrentHp <= 0)
+                {
+                    _gameOver = true;
+                    MessageBox.Show("Défaite ! Vous êtes mort !");
+                    return;
+                }
+                if (gorillas.Count == 0 && !_gameOver)
+                {
+                    _victory = true;
+                    MessageBox.Show("Victoire ! Vous avez vaincu tous les gorilles !");
+                    return;
+                }
                 int newGround = 400;
                 monkey.GroundY = newGround;
                 foreach (Palm_Tree pTree in tree)
