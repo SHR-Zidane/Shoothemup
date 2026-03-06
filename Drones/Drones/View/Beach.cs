@@ -137,7 +137,7 @@ namespace MonkeyGame
 
             foreach (player monkey in group)
             {
-                if (monkey.CurrentHp <= 0)
+                if (monkey.CurrentHp <= 0 || monkey.Y == 400)
                 {
                     _gameOver = true;
                     MessageBox.Show("Défaite ! Vous êtes mort !");
