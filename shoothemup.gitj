@@ -1,0 +1,199 @@
+{
+  "repoUrl": "https://github.com/SHR-Zidane/Shoothemup",
+  "projectName": "Shoothemup",
+  "branch": "main",
+  "me": "SHR-Zidane",
+  "journalStartDate": "2026-01-16T07:00:00.000Z",
+  "exceptions": [
+    {
+      "id": "31c0fe92-3f42-46bc-a9f2-83b9aefab95b",
+      "type": "commitless",
+      "name": "feat(player & beach)",
+      "description": "Modification du déplacement",
+      "date": "2026-02-06T08:00",
+      "duration": 105,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "ee716e0a-0064-442e-9383-d28921eed93d",
+      "type": "commitless",
+      "name": "feat(gorilla)",
+      "description": "commencement de la création des gorilles",
+      "date": "2026-02-06T09:50",
+      "duration": 105,
+      "status": "WIP",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "cee2406c-e1a5-44e0-91dd-86474ea3feaa",
+      "type": "commitless",
+      "name": "feat(gorilla)",
+      "description": "Ajout des gorilles et de l'affichage de ceux-ci",
+      "date": "2026-02-08T07:00:00.000Z",
+      "duration": 110,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "f78cbc91-fae8-48f3-ae8a-b538f204c337",
+      "type": "commitless",
+      "name": "feat(banana.cs)",
+      "description": "Ajout de la classe banana et commencement de son implémentation",
+      "date": "2026-02-08T08:50:00.000Z",
+      "duration": 50,
+      "status": "WIP",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "818bce2e-76ca-4e45-aa4f-588f2cc714ba",
+      "type": "commitless",
+      "name": "feat(banana)",
+      "description": "Ajout de la classe banane et de son affichage",
+      "date": "2026-02-06T09:40:00.000Z",
+      "duration": 50,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "386b1e06-0441-47f6-adff-ef7cc021de5d",
+      "type": "commitless",
+      "name": "feat(Beach)",
+      "description": "Ajout de la détéction de la banane la plus proche du gorille",
+      "date": "2026-02-09T12:10:00.000Z",
+      "duration": 50,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "b39101a2-44d2-4a03-81e5-e5ca7f6b6a12",
+      "type": "commitless",
+      "name": "déplacement automatique",
+      "description": "déplacement des gorilles automatisé vers la bananes la plus proche selon le gorille",
+      "date": "2026-02-11T08:11:00.000Z",
+      "duration": 60,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "63019fc6-2e3b-4a3b-b060-ccc38d94c6ce",
+      "type": "commitless",
+      "name": "chore(Palm_Tree)",
+      "description": "changement de nom de la variable de la hitbox",
+      "date": "2026-02-13T07:00:00.000Z",
+      "duration": 5,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "1c286035-d2ec-4268-be6c-ea4efea526b6",
+      "type": "commitless",
+      "name": "feat(projectile)",
+      "description": "Ajout de la classe projectile et de ses héritiers",
+      "date": "2026-02-13T07:05:00.000Z",
+      "duration": 120,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "4f1cd0d5-88a4-4985-8e02-aa126ba545f7",
+      "type": "commitless",
+      "name": "feat(coconut)",
+      "description": "Implémentation de la classe coconut et des méthodes d'attaques",
+      "date": "2026-02-13T09:05:00.000Z",
+      "duration": 85,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "727b9942-68a1-44fb-85da-796748aa9adc",
+      "type": "commitless",
+      "name": "feat(coconut)",
+      "description": "Avancement de la l'implémentation des lancés de coconuts",
+      "date": "2026-02-24T08:55:00.000Z",
+      "duration": 25,
+      "status": "WIP",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "c05991cd-c522-4726-99f5-a8f7cac9c280",
+      "type": "commitless",
+      "name": "feat(Bomb)",
+      "description": "Ajout de la méchanique de tir du joueur",
+      "date": "2026-02-27T09:26:00.000Z",
+      "duration": 64,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "73a3df73-fd0a-4d56-a8c4-05c430746458",
+      "type": "commitless",
+      "name": "feat(coconut)",
+      "description": "Implémentation terminée du tir des noix de coco",
+      "date": "2026-02-27T07:00:00.000Z",
+      "duration": 146,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "5c3c1853-0c6a-41e4-aad4-ed6fffc9af7f",
+      "type": "commitless",
+      "name": "feat(beach.cs)",
+      "description": "Mise en place de la collision entre le joueur et les noix de coco et entre les gorilles et les bombes",
+      "date": "2026-02-28T15:08:00.000Z",
+      "duration": 60,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "f33796d1-64af-44f9-a3f5-59e0dc90d3bb",
+      "type": "commitless",
+      "name": "feat(player&Gorilla)",
+      "description": "Ajout de la barre de vie et dans son fonctionnement",
+      "date": "2026-03-03T07:00:00.000Z",
+      "duration": 62,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "bc1d1cce-f97b-4f8a-89d9-825b6247e6ec",
+      "type": "commitless",
+      "name": "feat(plam_tree)",
+      "description": "Débuter à rendre les palmiers \"cassable\"",
+      "date": "2026-03-03T08:02:00.000Z",
+      "duration": 25,
+      "status": "WIP",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "097f1fc7-ffff-4b86-ab67-4bb829962406",
+      "type": "commitless",
+      "name": "feat(palm_tree)",
+      "description": "Les palmiers sont cassables",
+      "date": "2026-03-03T08:50:00.000Z",
+      "duration": 60,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "1b0e260a-5e58-4dd0-9e52-197d47b60f3e",
+      "type": "commitless",
+      "name": "feat(Jeu)",
+      "description": "Ajout de la condition de victoire et de défaite",
+      "date": "2026-03-03T09:50:00.000Z",
+      "duration": 40,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    },
+    {
+      "id": "b54b5457-b564-4cd8-b968-f238cee62595",
+      "type": "commitless",
+      "name": "fix(Jeu)",
+      "description": "Mise à jour de la condition de défaite\r\n\r\nJ'ai oublié de mettre que si il touche le sol il meurt",
+      "date": "2026-03-06T09:48:00.000Z",
+      "duration": 5,
+      "status": "DONE",
+      "author": "SHR-Zidane"
+    }
+  ]
+}
