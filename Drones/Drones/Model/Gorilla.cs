@@ -19,7 +19,7 @@ namespace MonkeyGame
         private int speedy = 1;
 
         private int _shootTimer = GlobalHelpers.alea.Next(100, 500);
-        private int _shootInterval = GlobalHelpers.alea.Next(500, 3000);
+        private int _shootInterval = GlobalHelpers.alea.Next(100, 500);
 
         private int _hpMax = 3;
         private int _currentHp = 3;
@@ -47,11 +47,21 @@ namespace MonkeyGame
         {
             if (Cible.X > _x)
             {
+                if (Cible.Y == _y)
+                {
+                    _x += speedx + 1; // Se dirige vers la droite
+                    Direction = 0; // 0 pour droite
+                }
                 _x += speedx; // Se dirige vers la droite
                 Direction = 0; // 0 pour droite
             }
             else if (Cible.X < _x)
             {
+                if (Cible.Y == _y)
+                {
+                    _x -= speedx + 1; // Se dirige vers la droite
+                    Direction = 0; // 0 pour droite
+                }
                 _x -= speedx; // Se dirige vers la gauche
                 Direction = 1; // 1 pour gauche
             }
