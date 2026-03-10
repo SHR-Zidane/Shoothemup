@@ -10,9 +10,12 @@ namespace MonkeyGame
 
         public void Render(BufferedGraphics drawingSpace)
         {
+            string scoreText = "Score : " + Score.ToString();
+
             drawingSpace.Graphics.DrawImage(Resources.player, X, Y, Width, Height);
             drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
-
+            drawingSpace.Graphics.DrawString(scoreText, scoreFont, Brushes.Black, X, Y - 20);
+            
 
             int barWidth = Width;
             int barHeight = 5;

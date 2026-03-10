@@ -17,11 +17,14 @@ namespace MonkeyGame
         private int velocityY = 0;
         private int _hpMax = 5;
         private int _currentHp = 5;
-
+        
+        private int _score = 0;
+        private static readonly Font scoreFont = new Font("Arial", 12, FontStyle.Bold);
         public int HpMax { get { return _hpMax; } }
         public int CurrentHp { get { return _currentHp; } set { _currentHp = value; } }
         public bool isJumping = true;
         public int GroundY { get; set; }
+        public int Score { get { return _score; } set { _score = value; } }
         public int Width { get; set; }
         public int Height { get; set; }
         public bool onPalmTree = false;
@@ -123,6 +126,7 @@ namespace MonkeyGame
         {
             CurrentHp -= damage;
             if (CurrentHp < 0) CurrentHp = 0;
+            _score -= 10;
         }
     }
 }

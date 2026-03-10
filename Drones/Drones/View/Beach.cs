@@ -176,10 +176,12 @@ namespace MonkeyGame
                         {
                             coconuts.RemoveAt(i);
                             tree[t].CurrentDurability -= 1;
+                            monkey.Score -= 5;
 
                             if (tree[t].CurrentDurability < 0)
                             {
                                 tree.RemoveAt(t);
+                                monkey.Score -= 10;
                             }
 
                             break;
@@ -197,7 +199,10 @@ namespace MonkeyGame
                     foreach (Banana banana in bananas)
                     {
                         if (gorilla.Hitbox.IntersectsWith(banana.Hitbox))
+                        {
+                            monkey.Score -= 20;
                             banana.IsStolen = gorilla.CheckGetBanana();
+                        }
 
                         int distance = gorilla.GetDistance(banana.X, banana.Y);
                         if (min_distance > distance)
@@ -230,10 +235,12 @@ namespace MonkeyGame
                         if (bombs[j].Hitbox.IntersectsWith(gorilla.Hitbox))
                         {
                             gorilla.CurrentHp -= 1;
+                            monkey.Score += 15;
                             bombs.RemoveAt(j);
                             if (gorilla.CurrentHp <= 0)
                             {
                                 gorillas.RemoveAt(i);
+                                monkey.Score += 10;
                             }
                         }
                     }
