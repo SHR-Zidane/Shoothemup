@@ -14,7 +14,7 @@ namespace MonkeyGame
 
             drawingSpace.Graphics.DrawImage(Resources.player, X, Y, Width, Height);
             drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
-            drawingSpace.Graphics.DrawString(scoreText, scoreFont, Brushes.Black, X, Y - 20);
+            drawingSpace.Graphics.DrawString(scoreText, scoreFont, Brushes.Black, X - 5, Y - 30);
             
 
             int barWidth = Width;
