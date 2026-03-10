@@ -13,7 +13,7 @@ namespace MonkeyGame
         public void Render(BufferedGraphics drawingSpace)
         {
             drawingSpace.Graphics.DrawImage(Resources.Banana, X, Y, 40, 40);
-            drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
+            //drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
         }
     }
 }

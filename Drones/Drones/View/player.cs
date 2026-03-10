@@ -13,7 +13,7 @@ namespace MonkeyGame
             string scoreText = "Score : " + Score.ToString();
 
             drawingSpace.Graphics.DrawImage(Resources.player, X, Y, Width, Height);
-            drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
+            //drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
             drawingSpace.Graphics.DrawString(scoreText, scoreFont, Brushes.Black, X - 5, Y - 30);
             
 

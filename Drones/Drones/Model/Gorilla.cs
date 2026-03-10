@@ -18,8 +18,8 @@ namespace MonkeyGame
         private int speedx = 1;
         private int speedy = 1;
 
-        private int _shootTimer = 0;
-        private int _shootInterval = GlobalHelpers.alea.Next(1500, 3000);
+        private int _shootTimer = GlobalHelpers.alea.Next(100, 500);
+        private int _shootInterval = GlobalHelpers.alea.Next(500, 3000);
 
         private int _hpMax = 3;
         private int _currentHp = 3;

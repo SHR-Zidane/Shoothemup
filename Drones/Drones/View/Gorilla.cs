@@ -13,12 +13,12 @@ namespace MonkeyGame
             if (Direction == 0)
             {
                 drawingSpace.Graphics.DrawImage(Resources.gorilla, X, Y, Width, Height);
-                drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
+                //drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
             }
             else
             {
                 drawingSpace.Graphics.DrawImage(Resources.gorilla_2, X, Y, Width, Height);
-                drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
+                //drawingSpace.Graphics.DrawRectangle(Pens.Red, Hitbox);
             }
 
             int barWidth = Width;
